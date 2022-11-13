@@ -1,0 +1,66 @@
+<div class="header">
+    <h2>Users</h2>
+    <div class="tools">
+      <button class="btn btn-primary mr-2" (click)="addUser()">
+        Add User
+      </button>
+      <div class="d-flex ml-auto" *ngIf="selectedUser">
+        <button
+          class="btn btn-primary mr-2"
+          (click)="editUser()"
+          placement="bottom"
+        >
+        Edit User
+        </button>
+        <button
+          class="btn btn-danger"
+          (click)="deleteUser()"
+          placement="bottom"
+        >
+        Delete User
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="content">
+    <div class="card">
+      <div class="card-body">
+        <p-table
+          selectionMode="single"
+          [rows]="10"
+          [(selection)]="selectedUser"
+          [value]="users"
+        >
+          <ng-template pTemplate="colgroup">
+            <colgroup>
+              <col class="index-header" />
+            </colgroup>
+          </ng-template>
+          <ng-template pTemplate="header">
+            <tr>
+              <th>First Name</th>
+              <th>Last Name</th>
+              <th>Email</th>
+              <th>Website</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-user >
+            <tr [pSelectableRow]="user">
+              <td>{{ user.name }}</td>
+              <td>{{ user.username }}</td>
+              <td>{{ user.email }}</td>
+              <td>{{ user.website }}</td>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="emptymessage" let-columns>
+            <tr>
+              <td class="text-center p-5" [attr.colspan]="3">
+                <span>No Records Found</span>
+              </td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </div>
+    </div>
+  </div>
+  
